@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShipMove : MonoBehaviour
 {
-    [SerializeField] public int shipType;
+    [SerializeField] public int shipType;  
 
     [SerializeField] private GameObject engineFireEffect;
     [SerializeField] private GameObject engineFireEffect2;
@@ -14,12 +14,16 @@ public class PlayerShipMove : MonoBehaviour
 
    // private float dirX = 0f;
     //private float dirY = 0f;
-    public float defaultMoveSpeed;
+   // public float defaultMoveSpeed;
 
     [SerializeField] private Transform playerBulletSpawnPoints;
     [SerializeField] private Transform playerBulletSpawnPoints2;
     [SerializeField] public GameObject playerBulletObjectPrefab;
     [SerializeField] public float playerBulletSpeed;
+
+
+    public float fireWaitTime;
+    public float waitTime;
 
 
     public MovementJoystick movementJoystick;
@@ -32,7 +36,9 @@ public class PlayerShipMove : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();       
+        rb = GetComponent<Rigidbody2D>();
+       // movementJoystick = FindObjectOfType<MovementJoystick>();
+        //fireWaitTime = waitTime;
     }
 
     private void FixedUpdate()
@@ -47,7 +53,7 @@ public class PlayerShipMove : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        // rb.velocity = new Vector2(joystick.Horizontal * _moveSpeed, joystick.Vertical * _moveSpeed);
+         //rb.velocity = new Vector2(joystick.Horizontal * _moveSpeed, joystick.Vertical * _moveSpeed);
 
     }
    
@@ -57,10 +63,8 @@ public class PlayerShipMove : MonoBehaviour
 
         EngineFireEffectController();
 
-       /* if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayerShipFireManager();
-        }         */          
+        PlayerShipFireManager();
+                        
     }
 
     /*private void PlayerShipController()
@@ -139,39 +143,75 @@ public class PlayerShipMove : MonoBehaviour
     {
         if (shipType == 1)
         {
-            GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+            if (fireWaitTime <= 0)
+            {
+                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
+                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);                
+                Destroy(newBullet, 2f);
+                fireWaitTime = waitTime;
+            }
 
-            Destroy(newBullet, 2f);           
+            else
+            {
+                fireWaitTime -= Time.deltaTime;
+            }
         }
+       
 
         else if (shipType == 2)
         {
-            GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-            Destroy(newBullet, 2f);
+            if (fireWaitTime <= 0)
+            {
+                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
+                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                Destroy(newBullet, 2f);
 
-            GameObject newBullet2 = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints2.transform.position, Quaternion.identity);
-            newBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-            Destroy(newBullet2, 2f);
+                GameObject newBullet2 = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints2.transform.position, Quaternion.identity);
+                newBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                Destroy(newBullet2, 2f);
+                fireWaitTime = waitTime;
+            }
+
+            else
+            {
+                fireWaitTime -= Time.deltaTime;
+            }
         }
 
         else if (shipType == 3)
         {
-            GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-            Destroy(newBullet, 2f);
+            if (fireWaitTime <= 0)
+            {
+                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
+                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                Destroy(newBullet, 2f);
+                fireWaitTime = waitTime;
+            }
+
+            else
+            {
+                fireWaitTime -= Time.deltaTime;
+            }
         }
 
         else if (shipType == 4)
         {
-            GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-            newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-            Destroy(newBullet, 2f);
+            if (fireWaitTime <= 0)
+            {
+                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
+                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                Destroy(newBullet, 2f);
 
-            GameObject newBullet2 = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints2.transform.position, Quaternion.identity);
-            newBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);            
-            Destroy(newBullet2, 2f);
+                GameObject newBullet2 = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints2.transform.position, Quaternion.identity);
+                newBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                Destroy(newBullet2, 2f);
+                fireWaitTime = waitTime;
+            }
+
+            else
+            {
+                fireWaitTime -= Time.deltaTime;
+            }
         }    
     }  
 }

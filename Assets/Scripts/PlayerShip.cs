@@ -15,7 +15,7 @@ public class PlayerShip : MonoBehaviour
     {
         //playerShipMove.shipType
         GetComponent<SpriteRenderer>().sprite = playerShipType.playerShipSprite;
-        GetComponent<PlayerShipMove>().defaultMoveSpeed = playerShipType.playerShipMovementSpeed;
+        //GetComponent<PlayerShipMove>().defaultMoveSpeed = playerShipType.playerShipMovementSpeed;
         transform.name = playerShipType.playerShipName;
         transform.localScale = playerShipType.playerShipScale;
     }

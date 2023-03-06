@@ -4844,8 +4844,8 @@ GameObject:
   - component: {fileID: 8084858942282949075}
   - component: {fileID: 1500310158665132302}
   m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Bullet
+  m_Name: Bullet4
+  m_TagString: Bullet4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4979,4 +4979,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombEffect: {fileID: 1993725779120519893, guid: 85489c35d2aa5bd46b2a14037963535a,
     type: 3}
-  damage: 5

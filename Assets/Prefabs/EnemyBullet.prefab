@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8179600933296443425}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -0.52, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0.09, y: 0.54, z: 0}
   m_LocalScale: {x: 0.1, y: 0.3, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3457075363981500452}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!198 &3958359974336029192
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -1324,7 +1324,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.83592635, b: 0, a: 1}
-        key1: {r: 1, g: 0.06672176, b: 0, a: 1}
+        key1: {r: 1, g: 0.92684215, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4842,10 +4842,10 @@ GameObject:
   - component: {fileID: 13264593166936607}
   - component: {fileID: 6489258880255928348}
   - component: {fileID: 8084858942282949075}
-  - component: {fileID: 1500310158665132302}
+  - component: {fileID: 5694361805902518187}
   m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Bullet
+  m_Name: EnemyBullet
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4858,7 +4858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8794311398808563889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.72, y: -27.82316, z: -1}
+  m_LocalPosition: {x: -0.72, y: -27.918, z: -1}
   m_LocalScale: {x: 0.1, y: 0.11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4909,8 +4909,8 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 74f6e4c0a6cc71a468803bd55e7ebce8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_FlipX: 1
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
@@ -4965,7 +4965,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5579877, y: 1.9466398}
   m_EdgeRadius: 0
---- !u!114 &1500310158665132302
+--- !u!114 &5694361805902518187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4974,9 +4974,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8794311398808563889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b51ee6a0b22e98a4c9a35bf3f7190290, type: 3}
+  m_Script: {fileID: 11500000, guid: e2d15bc4f94eb6543ba4e41bbc1e1f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bombEffect: {fileID: 1993725779120519893, guid: 85489c35d2aa5bd46b2a14037963535a,
     type: 3}
-  damage: 5

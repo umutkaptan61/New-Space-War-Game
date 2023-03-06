@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - EnemyShip
+  - Bullet
+  - PlayerShip
+  - Bullet2
+  - Bullet3
+  - Bullet4
+  - EnemyBullet
+  - Stage1End
+  - BulletCatcher
   layers:
   - Default
   - TransparentFX
