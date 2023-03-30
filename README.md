@@ -1,2 +1,3 @@
 # New-Space-War-Game
- Yeni Geliştirmeye Başladığım Mobil Uzay Savaşı Oyunu
+ Yaklaşık 1 ay sonra piyasada olacak yeni mobil savaş oyunum
+ 
