@@ -13,6 +13,11 @@ public class EnemyBulletManager : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {    
@@ -21,12 +26,14 @@ public class EnemyBulletManager : MonoBehaviour
               GameObject newEffect = Instantiate(bombEffect, transform.position, Quaternion.identity);
               Destroy(newEffect, 0.5f);
 
-              Destroy(gameObject);                
+              //Destroy(gameObject);
+              gameObject.SetActive(false);
           }
 
-        if (collision.gameObject.CompareTag("BulletCatcher"))
-        {
-            Destroy(gameObject);
-        }
+          if (collision.gameObject.CompareTag("BulletCatcher"))
+          {
+              //Destroy(gameObject);
+              gameObject.SetActive(false);
+          }
     }
 }

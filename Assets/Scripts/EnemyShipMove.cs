@@ -8,7 +8,7 @@ public class EnemyShipMove : MonoBehaviour
         
     [SerializeField] private Transform enemyBulletSpawnPoints;
     [SerializeField] private Transform enemyBulletSpawnPoints2;
-    [SerializeField] public GameObject enemyBulletObjectPrefab;
+    //[SerializeField] public GameObject enemyBulletObjectPrefab;
     [SerializeField] public float enemyBulletSpeed;
 
     public Transform movePoints;
@@ -43,21 +43,45 @@ public class EnemyShipMove : MonoBehaviour
 
     private void EnemyShipMovement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, movePoints.position, move_Speed * Time.deltaTime);
-
-        if (Vector2.Distance(transform.position, movePoints.position) < 0.2f)
+        if (enemyShipType == 1 || enemyShipType == 3 || enemyShipType == 5)
         {
-            if (waitTime <= 0)
-            {
-                movePoints.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-                waitTime = startTime;
-            }
+            transform.position = Vector2.MoveTowards(transform.position, movePoints.position, move_Speed * Time.deltaTime);
 
-            else
+            if (Vector2.Distance(transform.position, movePoints.position) < 0.2f)
             {
-                waitTime -= Time.deltaTime;            
+                if (waitTime <= 0)
+                {
+                    movePoints.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+                    waitTime = startTime;
+                }
+
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
             }
         }
+
+
+        if (enemyShipType == 2 || enemyShipType == 4)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, movePoints.position, move_Speed * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, movePoints.position) < 0.2f)
+            {
+                if (waitTime <= 0)
+                {
+                    movePoints.position = new Vector2(Random.Range(minX,maxX), Random.Range(transform.position.y,transform.position.y));
+                    waitTime = startTime;
+                }
+
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
+            }
+        }
+
     }
 
 
@@ -65,17 +89,29 @@ public class EnemyShipMove : MonoBehaviour
     {
         if (enemyShipType == 1)
         {
+            GameObject enemyBullet = EnemyObjectPool1.instance.GetPooledObject();
+            GameObject enemyBullet2 = EnemyObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newEnemyBullet = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints.transform.position, Quaternion.identity);
-                newEnemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+                             
+                    if (enemyBullet != null)
+                    {
+                        enemyBullet.transform.position = enemyBulletSpawnPoints.transform.position;
+                        enemyBullet.SetActive(true);
+                        enemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                GameObject newEnemyBullet2 = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints2.transform.position, Quaternion.identity);
-                newEnemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+                        fireWaitTime = startFireTime;
+                    }
 
-                Destroy(newEnemyBullet, 2f);
-                Destroy(newEnemyBullet2, 2f);
-                fireWaitTime = startFireTime;
+                    if (enemyBullet2 != null)
+                    {
+                        enemyBullet2.transform.position = enemyBulletSpawnPoints2.transform.position;
+                        enemyBullet2.SetActive(true);
+                        enemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+
+                        fireWaitTime = startFireTime;
+                    }                                               
             }
 
             else
@@ -87,14 +123,18 @@ public class EnemyShipMove : MonoBehaviour
 
         if (enemyShipType == 2)
         {
+            GameObject enemyBullet = EnemyObjectPool1.instance.GetPooledObject();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newEnemyBullet = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints.transform.position, Quaternion.identity);
-                newEnemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);            
+                if (enemyBullet != null)
+                {
+                    enemyBullet.transform.position = enemyBulletSpawnPoints.transform.position;
+                    enemyBullet.SetActive(true);
+                    enemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                Destroy(newEnemyBullet, 2f);
-                
-                fireWaitTime = startFireTime;
+                    fireWaitTime = startFireTime;
+                }             
             }
 
             else
@@ -106,17 +146,29 @@ public class EnemyShipMove : MonoBehaviour
 
         if (enemyShipType == 3)
         {
+            GameObject enemyBullet = EnemyObjectPool1.instance.GetPooledObject();
+            GameObject enemyBullet2 = EnemyObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newEnemyBullet = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints.transform.position, Quaternion.identity);
-                newEnemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+                             
+                    if (enemyBullet != null)
+                    {
+                        enemyBullet.transform.position = enemyBulletSpawnPoints.transform.position;
+                        enemyBullet.SetActive(true);
+                        enemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                GameObject newEnemyBullet2 = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints2.transform.position, Quaternion.identity);
-                newEnemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+                        fireWaitTime = startFireTime;
+                    }
 
-                Destroy(newEnemyBullet, 2f);
-                Destroy(newEnemyBullet2, 2f);
-                fireWaitTime = startFireTime;
+                    if (enemyBullet2 != null)
+                    {
+                        enemyBullet2.transform.position = enemyBulletSpawnPoints2.transform.position;
+                        enemyBullet2.SetActive(true);
+                        enemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+
+                        fireWaitTime = startFireTime;
+                    }                                               
             }
 
             else
@@ -128,17 +180,29 @@ public class EnemyShipMove : MonoBehaviour
 
         if (enemyShipType == 4)
         {
+            GameObject enemyBullet = EnemyObjectPool1.instance.GetPooledObject();
+            GameObject enemyBullet2 = EnemyObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newEnemyBullet = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints.transform.position, Quaternion.identity);
-                newEnemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                GameObject newEnemyBullet2 = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints2.transform.position, Quaternion.identity);
-                newEnemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+                if (enemyBullet != null)
+                {
+                    enemyBullet.transform.position = enemyBulletSpawnPoints.transform.position;
+                    enemyBullet.SetActive(true);
+                    enemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                Destroy(newEnemyBullet, 2f);
-                Destroy(newEnemyBullet2, 2f);
-                fireWaitTime = startFireTime;
+                    fireWaitTime = startFireTime;
+                }
+
+                if (enemyBullet2 != null)
+                {
+                    enemyBullet2.transform.position = enemyBulletSpawnPoints2.transform.position;
+                    enemyBullet2.SetActive(true);
+                    enemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+
+                    fireWaitTime = startFireTime;
+                }
             }
 
             else
@@ -150,17 +214,29 @@ public class EnemyShipMove : MonoBehaviour
 
         if (enemyShipType == 5)
         {
+            GameObject enemyBullet = EnemyObjectPool1.instance.GetPooledObject();
+            GameObject enemyBullet2 = EnemyObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newEnemyBullet = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints.transform.position, Quaternion.identity);
-                newEnemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                GameObject newEnemyBullet2 = Instantiate(enemyBulletObjectPrefab, enemyBulletSpawnPoints2.transform.position, Quaternion.identity);
-                newEnemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+                if (enemyBullet != null)
+                {
+                    enemyBullet.transform.position = enemyBulletSpawnPoints.transform.position;
+                    enemyBullet.SetActive(true);
+                    enemyBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
 
-                Destroy(newEnemyBullet, 2f);
-                Destroy(newEnemyBullet2, 2f);
-                fireWaitTime = startFireTime;
+                    fireWaitTime = startFireTime;
+                }
+
+                if (enemyBullet2 != null)
+                {
+                    enemyBullet2.transform.position = enemyBulletSpawnPoints2.transform.position;
+                    enemyBullet2.SetActive(true);
+                    enemyBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.down * enemyBulletSpeed);
+
+                    fireWaitTime = startFireTime;
+                }
             }
 
             else

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShipMove : MonoBehaviour
@@ -18,7 +16,7 @@ public class PlayerShipMove : MonoBehaviour
 
     [SerializeField] private Transform playerBulletSpawnPoints;
     [SerializeField] private Transform playerBulletSpawnPoints2;
-    [SerializeField] public GameObject playerBulletObjectPrefab;
+    //[SerializeField] public GameObject playerBulletObjectPrefab;
     [SerializeField] public float playerBulletSpeed;
 
 
@@ -143,12 +141,18 @@ public class PlayerShipMove : MonoBehaviour
     {
         if (shipType == 1)
         {
+            GameObject bullet = ObjectPool1.instance.GetPooledObject();
+            GameObject bullet2 = ObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);                
-                Destroy(newBullet, 2f);
-                fireWaitTime = waitTime;
+                if (bullet != null)
+                {
+                    bullet.transform.position = playerBulletSpawnPoints.transform.position;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                    fireWaitTime = waitTime;
+                }
             }
 
             else
@@ -160,16 +164,28 @@ public class PlayerShipMove : MonoBehaviour
 
         else if (shipType == 2)
         {
+            GameObject bullet = ObjectPool1.instance.GetPooledObject();
+            GameObject bullet2 = ObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-                Destroy(newBullet, 2f);
+                if (bullet != null)
+                {
+                    bullet.transform.position = playerBulletSpawnPoints.transform.position;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
 
-                GameObject newBullet2 = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints2.transform.position, Quaternion.identity);
-                newBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-                Destroy(newBullet2, 2f);
-                fireWaitTime = waitTime;
+                    fireWaitTime = waitTime;
+                }
+
+                if (bullet2 != null)
+                {
+                    bullet2.transform.position = playerBulletSpawnPoints2.transform.position;
+                    bullet2.SetActive(true);
+                    bullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+
+                    fireWaitTime = waitTime;
+                }             
             }
 
             else
@@ -180,12 +196,18 @@ public class PlayerShipMove : MonoBehaviour
 
         else if (shipType == 3)
         {
+            GameObject bullet = ObjectPool1.instance.GetPooledObject();
+            //GameObject bullet2 = ObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-                Destroy(newBullet, 2f);
-                fireWaitTime = waitTime;
+                if (bullet != null)
+                {
+                    bullet.transform.position = playerBulletSpawnPoints.transform.position;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+                    fireWaitTime = waitTime;
+                }
             }
 
             else
@@ -196,22 +218,34 @@ public class PlayerShipMove : MonoBehaviour
 
         else if (shipType == 4)
         {
+            GameObject bullet = ObjectPool1.instance.GetPooledObject();
+            GameObject bullet2 = ObjectPool2.instance2.GetPooledObject2();
+
             if (fireWaitTime <= 0)
             {
-                GameObject newBullet = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints.transform.position, Quaternion.identity);
-                newBullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-                Destroy(newBullet, 2f);
+                if (bullet != null)
+                {
+                    bullet.transform.position = playerBulletSpawnPoints.transform.position;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
 
-                GameObject newBullet2 = Instantiate(playerBulletObjectPrefab, playerBulletSpawnPoints2.transform.position, Quaternion.identity);
-                newBullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
-                Destroy(newBullet2, 2f);
-                fireWaitTime = waitTime;
+                    fireWaitTime = waitTime;
+                }
+
+                if (bullet2 != null)
+                {
+                    bullet2.transform.position = playerBulletSpawnPoints2.transform.position;
+                    bullet2.SetActive(true);
+                    bullet2.GetComponent<Rigidbody2D>().AddForce(Vector3.up * playerBulletSpeed);
+
+                    fireWaitTime = waitTime;
+                }               
             }
 
             else
             {
                 fireWaitTime -= Time.deltaTime;
             }
-        }    
-    }  
+        }     
+    }
 }
